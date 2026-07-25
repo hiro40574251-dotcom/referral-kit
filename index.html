@@ -2,10 +2,251 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>リファラル紹介キット</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お友達紹介・職場紹介キット</title>
+    <style>
+        /* 全体の基本設定 */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fa;
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #ffffff;
+            min-height: 100vh;
+            box-sizing: border-box;
+            padding-bottom: 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        /* カラフルなロゴのスタイル */
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            padding: 20px 0 10px 0;
+            letter-spacing: 2px;
+        }
+        .logo span:nth-child(5n+1) { color: #ff6b6b; }
+        .logo span:nth-child(5n+2) { color: #4dadf7; }
+        .logo span:nth-child(5n+3) { color: #51cf66; }
+        .logo span:nth-child(5n+4) { color: #fcc419; }
+        .logo span:nth-child(5n+5) { color: #b197fc; }
+
+        /* メインビジュアル（青空と園舎） */
+        .main-visual {
+            width: 100%;
+            height: 200px;
+            background-color: #e3fafc; /* 画像がない時の仮の薄い青 */
+            background-image: url('images/school.jpg'); /* ここに画像パスを指定 */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* コンテンツエリア */
+        .content {
+            padding: 20px;
+        }
+        h2 {
+            font-size: 20px;
+            color: #2b2b2b;
+            margin-bottom: 10px;
+        }
+        .intro-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        /* ボタン・選択肢の共通スタイル */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 12px 0;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-sizing: border-box;
+            transition: background 0.2s;
+        }
+        .btn-start {
+            background-color: #ff6b6b;
+            color: white;
+            box-shadow: 0 4px 10px rgba(255,107,107,0.3);
+        }
+        .btn-option {
+            background-color: #f1f3f5;
+            color: #495057;
+            border: 2px solid #dee2e6;
+            text-align: left;
+            padding-left: 25px;
+        }
+        .btn-option:active {
+            background-color: #e9ecef;
+        }
+        .btn-action {
+            background-color: #4dadf7;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        /* 画面の切り替え制御 */
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+
+        /* 進行状況バー */
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background-color: #e9ecef;
+            border-radius: 3px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background-color: #4dadf7;
+            width: 0%;
+            transition: width 0.3s;
+        }
+    </style>
 </head>
 <body>
-    <h1>デジタル紹介キット（テスト画面）</h1>
-    <p>LINEで送る適性チェックをここに作っていきます！</p>
+
+<div class="container">
+    <!-- 1文字ずつ色が変わるロゴ -->
+    <div class="logo">
+        <span>み</span><span>な</span><span>み</span><span>の</span><span>た</span><span>い</span><span>よ</span><span>う</span><span>保</span><span>育</span><span>園</span><span>A</span>.<span>S</span>.<span>K</span>
+    </div>
+
+    <!-- メイン写真（images/school.jpgをアップロードするとここに表示されます） -->
+    <div class="main-visual">
+        <!-- 画像がない場合のプレースホルダー（画像アップロード後は消してもOK） -->
+        【ここに青空と園舎の写真が表示されます】
+    </div>
+
+    <div class="content">
+        <!-- 画面1：トップページ -->
+        <div id="page-top" class="page active">
+            <h2>職場紹介 ＆ 相性チェック</h2>
+            <p class="intro-text">
+                当園のページへようこそ！<br>
+                あなたの強みや好みが、私たちの職場にどれくらいマッチするか、1分でわかる簡単な診断を用意しました。まずは気軽にスタート！
+            </p>
+            <button class="btn btn-start" onclick="nextPage('q1')">診断をスタートする</button>
+        </div>
+
+        <!-- 画面2：質問1 -->
+        <div id="page-q1" class="page">
+            <div class="progress-bar"><div class="progress-fill" style="width: 33%;"></div></div>
+            <h2>Q1. 子どもたちと接するとき、一番大切にしたいことは？</h2>
+            <button class="btn btn-option" onclick="answer('A')">のびのびと個性を伸ばすこと</button>
+            <button class="btn btn-option" onclick="answer('B')">基本的な生活習慣をしっかり身につけること</button>
+        </div>
+
+        <!-- 画面3：質問2 -->
+        <div id="page-q2" class="page">
+            <div class="progress-bar"><div class="progress-fill" style="width: 66%;"></div></div>
+            <h2>Q2. 理想とするチームの雰囲気は？</h2>
+            <button class="btn btn-option" onclick="answer('A')">お互いにアイデアを出し合って挑戦する</button>
+            <button class="btn btn-option" onclick="answer('B')">マニュアルや計画に沿って着実に進める</button>
+        </div>
+
+        <!-- 画面4：質問3 -->
+        <div id="page-q3" class="page">
+            <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+            <h2>Q3. 働き方で重視したいポイントは？</h2>
+            <button class="btn btn-option" onclick="answer('A')">残業ほぼナシ、持ち帰り仕事ゼロの充実プライベート</button>
+            <button class="btn btn-option" onclick="answer('B')">研修やサポート体制が手厚く、スキルアップできる環境</button>
+        </div>
+
+        <!-- 画面5：結果画面 -->
+        <div id="page-result" class="page">
+            <h2>診断結果</h2>
+            <div style="background: #e8f7ff; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                <p id="result-type" style="font-weight: bold; font-size: 18px; color: #1971c2; margin: 0;"></p>
+            </div>
+            <p class="intro-text" id="result-text"></p>
+            
+            <hr style="border: 0; border-top: 1px solid #dee2e6; margin: 20px 0;">
+            
+            <h3>まずは気軽にお話ししませんか？</h3>
+            <p class="intro-text">面接ではなく「カジュアル面談」です。園の見学や、実際の働き方について気軽にお答えします！</p>
+            <a href="https://lin.ee" class="btn btn-action">LINEでカジュアル面談を申し込む</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 回答を記録する変数
+    let answers = [];
+    let currentStep = 'top';
+
+    // 画面を切り替える関数
+    function nextPage(pageId) {
+        // すべてのページを非表示にする
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        // 指定されたページを表示する
+        document.getElementById('page-' + pageId).classList.add('active');
+    }
+
+    // 選択肢をクリックした時の処理
+    function answer(type) {
+        answers.push(type);
+        
+        if (answers.length === 1) {
+            nextPage('q2');
+        } else if (answers.length === 2) {
+            nextPage('q3');
+        } else if (answers.length === 3) {
+            showResult();
+        }
+    }
+
+    // 結果を集計して表示する関数
+    function showResult() {
+        // Aが多いかBが多いかで判定する簡易ロジック
+        const countA = answers.filter(a => a === 'A').length;
+        
+        let typeTitle = "";
+        let typeDesc = "";
+
+        if (countA >= 2) {
+            typeTitle = "のびのびアイデア発揮タイプ";
+            typeDesc = "あなたには、子どもたちの個性を尊重し、職員同士で新しい企画を楽しめる当園の環境がピッタリです！自由な発想をぜひ現場で活かしてください。";
+        } else {
+            typeTitle = "安心・着実サポートタイプ";
+            typeDesc = "あなたには、丁寧な研修体制があり、計画に沿って子どもたち一人ひとりに寄り添える当園の環境がピッタリです！未経験やブランクがあっても安心して働けます。";
+        }
+
+        // 画面に結果を書き込む
+        document.getElementById('result-type').innerText = "あなたは【" + typeTitle + "】";
+        document.getElementById('result-text').innerText = typeDesc;
+        
+        nextPage('result');
+    }
+</script>
+
 </body>
 </html>
