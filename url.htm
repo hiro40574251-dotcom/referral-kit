@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>リファラルURL</title>
+<style>
+  body { font-family: sans-serif; padding: 20px; background-color: pink;}
+  textarea { width: 360px; margin-bottom: 10px; }
+  button { padding: 10px 20px; font-size: 16px; }
+  #result { width: 360px; height: 100px; margin-top: 20px; }
+@media (max-width: 360px) {
+    body {
+        background-color: ;
+    }
+}
+</style>
+</head>
+<body>
+
+<h2>職場紹介＆相性チェックURLコピー</h2>
+
+
+
+<textarea id="result" readonly placeholder="URL出力">https://hiro40574251-dotcom.github.io/referral-kit/</textarea><br>
+<button id="hpcp2" onclick="copyPrompt();">クリップボードにコピー</button>
+<br><br>
+
+
+<script>
+
+
+    // プロンプトをクリップボードにコピー
+    function copyPrompt() {
+      const textarea = document.getElementById('result');
+      if (textarea.value===""){alert('プロンプト欄が空白か、エラーでクリップボードにコピーできませんでした。');return;}
+      textarea.select();
+      document.execCommand('copy');
+      alert('✓ クリップボードにコピーしました！');
+    }
+</script>
+
+<a href="index.html">職場紹介＆相性チェックのページ</a>
+
+</body>
+</html>
